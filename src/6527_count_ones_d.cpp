@@ -1,6 +1,6 @@
 //
 //
-//  Created b Nathaniel Kohn on 11 M 2017.
+//  Created by Nathaniel Kohn on 11 M 2017.
 //  Copyright © 2017 Nathaniel Kohn. All rights reserved.
 //
 
@@ -16,8 +16,6 @@
 #include <algorithm>
 #include <memory>
 #include <iomanip>
-#include <unordered_map>
-#include <unordered_set>
 
 /* My Templates for convenience */
 #define INF 0x3f3f3f3f
@@ -28,8 +26,6 @@
 #define fi first
 #define se second
 #define zero(x) memset((x), 0, sizeof((x)))
-#define um unordered_map
-#define us unordered_set
 using namespace std;
 
 using ll = long long;
@@ -37,78 +33,84 @@ using ull = unsigned long long;
 using ii = pair<int ,int>;
 using vi = vector<int>;
 using vii = vector<ii>;
+using vll = vector<ll>;
 using seii = set<ii>;
 using stii = stack<ii>;
 using StrSet = set<string>;
 using vs = vector<string>;
+const int ones_lim = 1 << 16;
+const int MapSize = 256;
+
+vi ones_cnt_map (MapSize, 0);
+
+
+int count(ll in) {
+	int res = 0;
+	for (; in; in >>= 1) {
+		if (in & 1) {
+			++res;
+		}
+	}
+	return res;
+}
+
+void buildOnesMat()
+{
+	for (int i=0; i <  MapSize; ++i) {
+		ones_cnt_map[i] = count(i);
+	}
+}
+
+ull getOnesInNum(ull num, int numOfBytes)
+{
+	//int res = count(num);
+	static bool needToInitMap = true;
+	//cout << "size of bytes: " << numOfBytes << " " << endl;
+	if(needToInitMap) { 
+		buildOnesMat();
+		needToInitMap = false;
+	}
+	//cout << "res is: " << res << endl;
+	ull sum = 0;
+	unsigned char *tbuff = (unsigned char *)&num;
+	for (int k = 0 ; k < numOfBytes; ++k) {
+		cout << "tbuff[" << k << "]" << " " << (ull)tbuff[k] << " " << endl;
+        int n = tbuff[k];
+//		sum += ones_cnt_map[(ull)tbuff[k]];
+        int ones = ones_cnt_map[n];
+//		sum += ones_cnt_map[n];
+		sum += ones;
+	}
+	//cout << "sum is: " << sum << " " << endl;
+	return sum;
+}
+
+ull calcInRange(ll a, ll b)
+{
+//    for (ll k=0; k <= a; ++k) {
+//	}
+	ull res2=0;
+	for (ll k=a; k <= b; ++k) {
+		res2 += getOnesInNum(k, sizeof(ll));
+	}
+
+    return res2;
+}
 
 int main()
-
 {
-	map<int, int> m;
-	int N, T, K;
-	string str;
-	int nx, ny;
-	float w, x, y;
 
-	while (cin >> nx) {
-		cin >> ny >> w;
-		if( nx == 0 && ny == 0 && w == 0.0) {
-			break;
-		}
-		vector<float> vecfx(nx);
-		vector<float> vecfy(ny);
-//		um<float> seq;
-		set<float> xs, ys;
-		float gmaxx = 75, gmaxy = 100;
-
-		rep(j, 0, nx) {
-			cin >> vecfx[j];
-		//	xs.emplace(cin.get());
-			//cout << "This is x: " << x << " " << endl;
-		}
-		rep(j, 0, ny) {
-			cin >> vecfy[j];
-			//cout << "This is y: " << y << " " << endl;
-		}
-		sort(vecfx.begin(), vecfx.end());
-		sort(vecfy.begin(), vecfy.end());
-		/*for (auto &i : vecfx) {
-			cout << "ix: " << i << " " << endl;
-		}
-		for (auto &i : vecfy) {
-			cout << "iy: " << i << " " << endl;
-		}
-		*/
-		if (vecfx[0] > (w/2) || vecfy[0] > (w/2)) {
-			cout <<"NO" << endl;
-			continue;
-		}
-		if (vecfy[ny-1] + w/2 < gmaxy || vecfx[nx-1] + w/2 < gmaxx) {
-			cout << "NO" << endl;
-			continue;
-		}
-		int i;	
-		for ( i = 1; i < vecfx.size(); ++i) {
-			if(vecfx[i] - vecfx[i-1] > w) {
-				cout << "NO" << endl;
-				break;
-			}
-		}
-		if (i !=  vecfx.size()) {
-			continue;
-		}
-		for (i = 1; i < vecfy.size(); ++i) {
-			if(vecfy[i] - vecfy[i-1] > w) {
-				cout << "NO" << endl;	
-				break;
-			}
-		}
-		if (i != vecfy.size()) {
-			continue;
-		}
-		cout << "YES" << endl;
-	}
+	
+	cout << endl;
+	ull a, b;
+	//cin >> a >> b;
+	//ll res = count_ones_in_range(a,b);
+	//
+	//count_ones_in_range(2,12);
+	cin >> a >> b;
+    cout << "a is: " << a << " b is: " << b << endl;
+	cout << "in range: " << calcInRange(a,b) << endl;
+//	testMap(a, sizeof(ll));
     return 0;
 }
 

@@ -1,0 +1,6 @@
+competitive/competitive.xcodeproj
+documentation
+.DS_Store
+*.swp
+bin/
+

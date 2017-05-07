@@ -1,6 +1,6 @@
 //
 //
-//  Created b Nathaniel Kohn on 11 M 2017.
+//  Created by Nathaniel Kohn on 11 M 2017.
 //  Copyright © 2017 Nathaniel Kohn. All rights reserved.
 //
 
@@ -16,21 +16,16 @@
 #include <algorithm>
 #include <memory>
 #include <iomanip>
-#include <unordered_map>
-#include <unordered_set>
 
 /* My Templates for convenience */
 #define INF 0x3f3f3f3f
-#define rep(i, j, k) for(i = (int)j; i < (int)k; ++i)
-#define nrep(i, j, k) for(int i = (int)j; i < (int)k; ++i)
+#define rep(i, j, k) for(int i = (int)j; i < (int)k; ++i)
 #define sz(x) ( (int) x.size())
 #define mp make_pair
 #define eb emplace_back
 #define fi first
 #define se second
 #define zero(x) memset((x), 0, sizeof((x)))
-#define um unordered_map
-#define us unordered_set
 using namespace std;
 
 using ll = long long;
@@ -38,6 +33,7 @@ using ull = unsigned long long;
 using ii = pair<int ,int>;
 using vi = vector<int>;
 using vii = vector<ii>;
+using vll = vector<ll>;
 using seii = set<ii>;
 using stii = stack<ii>;
 using StrSet = set<string>;
@@ -46,43 +42,19 @@ using vs = vector<string>;
 int main()
 
 {
-	map<int, int> m;
-    int  C;
-	string str;
-    cin >> C;
-    nrep(c, 0, C) {
-        string S, T;
-		cin >> S >> T; 
-        int onesDiff = 0;
-        int diffCnt=0;
-      
-        int opCnt = 0, chZeroToOneCnt = 0, chOneToZeroCnt =0;
-        
-        for (int s = 0;  s < S.size(); ++s) {
-            if (S[s] != T[s]) {
-                ++diffCnt;
-            }
-            if(S[s] == '?' && T[s] == '1') {
-                ++onesDiff;
-            }
-            else if(S[s] == '1' && T[s] == '0') {
-                ++chOneToZeroCnt;
-                --onesDiff;
-            }
-            else if (S[s] == '0' && T[s] == '1') {
-                ++chZeroToOneCnt;
-                ++onesDiff;
-            }
-        }
-        if (onesDiff < 0) {
-            cout << "Case " << c+1 << ": " << -1 << endl;
-        }
-        else {
-            opCnt = diffCnt - min(chZeroToOneCnt, chOneToZeroCnt);
-            cout << "Case " << c+1 << ": " << opCnt  << endl;
-        }
-    
-	}
+	ll A, B, E,P;
+	while(scanf("%d%d%d%d",&A,&B,&E,&P)!=EOF) {
+		int N, T, K;
+		cin >> T;
+		rep(i, 0, T) {
+			vii v;
+			cin >> N >> K;
+			for(int i=0; i < N; ++i) {
+				m.emplace(mp(i, 0));
+			}
+		 
+		}
+	} 
     return 0;
 }
 

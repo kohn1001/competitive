@@ -26,6 +26,7 @@
 #define fi first
 #define se second
 #define zero(x) memset((x), 0, sizeof((x)))
+
 using namespace std;
 
 using ll = long long;
@@ -38,29 +39,19 @@ using stii = stack<ii>;
 using StrSet = set<string>;
 using vs = vector<string>;
 
+template <typename T> 
+struct TreeNode {
+	T key;
+	set<T> childrens;
+};
+
 int main()
 
 {
-	map<int, int> m;
-	int N, T, K;
-    cin >> T;
-    rep(i, 0, T) {
-        vii v;
-        cin >> N >> K;
-		for(int i=0; i < N; ++i) {
-			m.emplace(mp(i, 0));
-		}
-     
-	}
-   
-    return 0;
+	TreeNode<int> tn;
+
+   return 0;
 }
-
-
-
-
-
-
 
 
 #ifdef DEGBUG
