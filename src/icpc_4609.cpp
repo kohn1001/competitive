@@ -96,7 +96,7 @@ ll findPrimes(string s)
     }while(next_permutation(s.begin(), s.end()));
     return  cnt;
 }
-
+/*
 int main()
 {
 	//while(scanf("%d%d%d%d",&A,&B,&E,&P)!=EOF) {
@@ -119,7 +119,7 @@ int main()
 	//} 
     return 0;
 }
-
+*/
 
 
 
