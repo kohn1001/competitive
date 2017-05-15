@@ -45,7 +45,7 @@ using vs = vector<string>;
 using pairSD = pair<pair<int, int>, pair<int, int>>;
 using edgWe = pair<pairSD, int>;
 
-int reached[30][30];
+int visited[30][30];
 int bellman(
     vector<edgWe> &adjList,
     int numOfVertexes,
@@ -53,25 +53,25 @@ int bellman(
     ii &&dst,
     vector<vi> &gy)
 {
-//    bool isVisit = false;
+    bool isVisit = false;
     for(int i=0; i<= dst.first; ++i) {
         for (int j=0; j <= dst.second; ++j) {
-            reached[i][j] = 0;
+            visited[i][j] = 0;
         }
     }
     gy[0][0] = 0;
-    reached[source.first][source.second] = 1;
+    visited[source.first][source.second] = 1;
     /*hold the path with shourtest path - in case there is one */
     
     for (int i=0; i<numOfVertexes; ++i) {
-//        isVisit = false;
+        isVisit = false;
         for (auto &w : adjList) {
             int ui = w.first.second.first, uj = w.first.second.second;
             int vi = w.first.first.first, vj = w.first.first.second;
             if(gy[ui][uj] > gy[vi][vj] + w.second) {
 //                isVisit = true;
-                if(reached[vi][vj]) {
-                    reached[ui][uj] = 1;
+                if(visited[vi][vj]) {
+                    visited[ui][uj] = 1;
                 }
                 gy[ui][uj] = gy[vi][vj] + w.second;
             }
@@ -80,24 +80,29 @@ int bellman(
     for (auto &w : adjList) {
         int ui = w.first.second.first, uj = w.first.second.second;
         int vi = w.first.first.first, vj = w.first.first.second;
-        if(reached[vi][vj] && gy[vi][vj] +w.second < gy[ui][uj]) {
+        if(visited[vi][vj] && gy[vi][vj] +w.second < gy[ui][uj]) {
             cout << "Never" << endl;
             return 0;
-        
         }
     }
 //    if (isVisit == false) {
-        //if (gy[dst.first][dst.second] == INF) {
-    if (!reached[dst.first][dst.second]) {
+//        if (gy[dst.first][dst.second] == INF) {
+    if (!visited[dst.first][dst.second]) {
         cout << "Impossible" << endl;
     }
     else {
-        cout <<  gy[dst.first][dst.second] << endl;
+            cout <<  gy[dst.first][dst.second] << endl;
     }
+ 
+//    else {
+//        cout << "Never" << endl;
+//    }
+    
     return 0;
 }
 
 bool isValid(int i, int j, int W, int H, bool grave[][30], bool huntedHol[][30])
+//bool isValid(int i, int j, int W, int H, vector<vector<bool>> &grave, vector<vector<bool>> &huntedHol)
 {
     if(i >= 0 && i < W && j >= 0 && j < H && !grave[i][j]) {// || gy[i][j] == -1) {
         return true;
@@ -115,6 +120,8 @@ void printAdjList(vector<edgWe> &adjList)
 }
 bool graveStone[30][30];
 bool huntedHol[30][30];
+
+#ifdef DEGBUG
 int main()
 {
     int W, H;
@@ -124,6 +131,8 @@ int main()
     //while (cin >> W) {
 //        cin >> H;
         vector<vector<int>> graveYard(W, vector<int>(H, INF));
+//        vector<vector<bool>> graveStone(W, vector<bool>(H, false));
+//        vector<vector<bool>> huntedHol(W, vector<bool>(H, false));
         memset(graveStone, false, sizeof(graveStone));
         memset(huntedHol, false, sizeof(huntedHol));
         vector<edgWe> adjList;
@@ -149,6 +158,9 @@ int main()
         for(int i = 0; i < W ; ++i) {
             for(int j = 0; j < H; ++j) {
 //                if(graveYard[i][j] == -1 || graveYard[i][j] == 0 || (i == W-1 && j == H-1)) {
+                for (int k=0; k<4; ++k) {
+                   
+                }
                 if(graveStone[i][j] || huntedHol[i][j] || (i == W-1 && j == H-1)) {
                     continue;
                 }
@@ -183,8 +195,6 @@ int main()
 }
 
 
-
-#ifdef DEGBUG
     /*
     int N; int T;
     cin >> T;

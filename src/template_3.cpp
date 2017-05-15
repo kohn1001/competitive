@@ -3,7 +3,6 @@
 //  Created by Nathaniel Kohn on 11 M 2017.
 //  Copyright © 2017 Nathaniel Kohn. All rights reserved.
 //
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -16,6 +15,11 @@
 #include <algorithm>
 #include <memory>
 #include <iomanip>
+#include <cmath>
+#include <cstdio>
+#include <cstring>
+
+
 
 /* My Templates for convenience */
 #define INF 0x3f3f3f3f
