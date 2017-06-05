@@ -59,13 +59,13 @@ void mul(int n, vector<ll> &va, vector<ll> &vb, vector<ll> &res) {
     }
 }
 
-void pow(int n, vector<ll> &va, int b, vector<ll> & res) {
+void pow(int n, vector<ll> &va, int s, vector<ll> & res) {
     static vector<ll> vc(1024);
     fill(vc.begin(), vc.end(), 0);
     
     vc[0] = 1;
-    for (; b; b >>= 1 ) {
-        if ((b & 1) != 0) {
+    for (; s; s >>= 1 ) {
+        if ((s & 1) != 0) {
             mul(n, vc, va, vc);
         }
         mul(n, va, va, va);
@@ -79,7 +79,7 @@ void pow(int n, vector<ll> &va, int b, vector<ll> & res) {
 int main() {
     int T, n, s, l, r, x;
     long long res;
-    vector<ll> prod(1024), v(1024);
+    vector<ll> prod(1000), v(1000);
     
     ll modu[10];
     modu[0] = 1;
@@ -89,19 +89,20 @@ int main() {
     cin >> T;
     for (int ti = 1; ti <= T; ++ti) {
         cin >> n >> s >> l >> r >> x;
+        
         MOD = modu[x];
         for (int i = 0; i < n; ++i) {
             cin >> v[i];
             v[i] %= MOD;
         }
-        for (int i = 0; i < n; ++i) {
-            prod[i] = 0;
-        }
-        prod[0] = 1 % MOD;
+        
+        fill(prod.begin(), prod.end(), 0);
+        
+        prod[0] = 1;
         prod[n - 1] += l % MOD;
         prod[1] += r % MOD;
         pow(n, prod, s, prod);
-        // debug(n, p);
+        
         for (int i = 0; i < n; ++i) {
             res = 0;
             for (int j = 0; j < n; ++j) {
