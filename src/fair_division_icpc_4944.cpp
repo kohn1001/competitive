@@ -96,10 +96,10 @@ int main()
                 P -= mid;
             }
             for (auto &i : current) {
-                cout << "paoid: " << i->amount_paid << endl;
+//                cout << "paoid: " << i->amount_paid << endl;
                 auto pa = i->amount_paid;
                 auto mo = i->money;
-                cout << "money: " << i->money << endl;
+//                cout << "money: " << i->money << endl;
             }
             for (list<Member*>::reverse_iterator end = current.rbegin(); P != 0 && end != current.rend(); ++end) {
                 (*end)->amount_paid++;

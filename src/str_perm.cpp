@@ -16,19 +16,18 @@ vector<string> getPermut(string str)
 	string s; 
 	s += str[0];
 
-	vector<string> res   = getPermut(str.substr(1, str.size()-1));
+	vector<string> subPerm   = getPermut(str.substr(1, str.size()-1));
 
-	for (auto &p : res) {
+	for (auto &p : subPerm) {
 		if (p.size() == 0) {
 			permutations.emplace_back(s);
 		}
 		else {
-			for (int i=0; i < p.size(); ++i) {
-				permutations.emplace_back(p.substr(0, i) + s + p.substr(i, p.size()-1));
+			for (int i=0; i <= p.size(); ++i) {
+				permutations.emplace_back(p.substr(0, i) + s + p.substr(i, p.size()-i));
 			}
 		}
 	}
-
 	return permutations;
 }
 
