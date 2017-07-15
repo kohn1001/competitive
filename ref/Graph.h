@@ -1,3 +1,10 @@
+/* taken from the comptetitive workshop website - Technion CS 234900 
+ *   http://webcourse.cs.technion.ac.il/234900/Spring2017/ho/WCFiles/Graph.h
+ *
+ * */
+
+
+
 #include <vector>
 #include <queue>
 #include <stack>
