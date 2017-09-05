@@ -88,7 +88,7 @@ ll findPrimes(string s)
         for(int i=1; i <= s.size(); ++i) {
             res = getNumsFromPerm(s.substr(0, i));
             if(checkIfPrime(res)) {
-//                cout << "is prime " << endl;
+                cout << "is prime " << endl;
                 ++cnt;
             }
         }
@@ -124,35 +124,3 @@ int main()
 
 
 
-
-
-
-#ifdef DEGBUG
-    /*
-    int N; int T;
-    cin >> T;
-    rep(i, 0, T) {
-        vii v;
-        cin >> N;
-       int M;
-        cin >> M; set<string> fs;
-        for (int i = 0; i < N; ++i) {
-            string name;
-//            while(getline(cin, name) && name.empty());
-           //        reverseStr(s) ;
-        }
-//        printFs(fs);
-        
-        rep(i, 0, M) {
-            string dir;
-            while(getline(cin, dir) && dir.empty());
-//            ll num = getCommNum(fs, dir);
-//            cout << "Case #" << i+1 << ": " << num << endl;
-        }
-    }
-    
-    //    cout << "the sum: " << sum << endl;
-    // cout << "the sum: " << sum << endl;
-   */
-
-#endif
