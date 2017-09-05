@@ -3,6 +3,49 @@
 //
 // check all possible breaks of a number (permutations) for primes
 
+
+
+/*
+ICPC problem - very very interesting :) 
+
+Here is the problem statement :
+Direct Link to it:
+https://icpcarchive.ecs.baylor.edu/index.php?option=onlinejudge&page=show_problem&problem=2610
+
+
+Industrial spying is very common for modern research labs. I am such an industrial spy - dont tell
+anybody! My recent job was to steal the latest inventions from a famous math research lab. It was
+hard to obtain some of their results but I got their waste out of a document shredder.
+I have already reconstructed that their research topic is fast factorization. But the remaining paper
+snippets only have single digits on it and I cannot imagine what they are for. Could it be that those
+digits form prime numbers? Please help me to find out how many prime numbers can be formed using
+the given digits.
+Input
+The first line of the input holds the number of test cases c (1 ≤ c ≤ 200). Each test case consists of a
+single line. This line contains the digits (at least one, at most seven) that are on the paper snippets.
+Output
+
+=====>>>>>
+For each test case, print one line containing the number of different primes that can be reconstructed
+by shuffling the digits. You may ignore digits while reconstructing the primes (e.g., if you get the digits
+7 and 1, you can reconstruct three primes 7, 17, and 71). Reconstructed numbers that (regarded as
+strings) differ just by leading zeros, are considered identical (see the fourth case of the sample input).
+Sample Input
+4
+17
+1276543
+9999999
+011
+Sample Output
+3
+1336
+0
+2
+
+
+
+*/
+
 #include <iostream>
 #include <string>
 #include <vector>
