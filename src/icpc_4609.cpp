@@ -1,8 +1,7 @@
 //
 //
-//Natty Kohn 036048817
-//Dror Shwimmer 066138926 
 //
+// check all possible breaks of a number (permutations) for primes
 
 #include <iostream>
 #include <string>
